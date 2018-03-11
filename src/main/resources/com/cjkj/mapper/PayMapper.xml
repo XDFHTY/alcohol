@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.Pay" >
+    <id column="pay_id" property="payId" jdbcType="BIGINT" />
+    <result column="pay_name" property="payName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_id, pay_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay
+    where pay_id = #{payId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pay
+    where pay_id = #{payId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.Pay" >
+    insert into pay (pay_id, pay_name)
+    values (#{payId,jdbcType=BIGINT}, #{payName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.Pay" >
+    insert into pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="payName != null" >
+        pay_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        #{payId,jdbcType=BIGINT},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.Pay" >
+    update pay
+    <set >
+      <if test="payName != null" >
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.Pay" >
+    update pay
+    set pay_name = #{payName,jdbcType=VARCHAR}
+    where pay_id = #{payId,jdbcType=BIGINT}
+  </update>
+</mapper>

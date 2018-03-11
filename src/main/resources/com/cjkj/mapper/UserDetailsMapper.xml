@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.UserDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.UserDetails" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_full" property="userFull" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="CHAR" />
+    <result column="user_nike" property="userNike" jdbcType="VARCHAR" />
+    <result column="user_head" property="userHead" jdbcType="VARCHAR" />
+    <result column="user_card" property="userCard" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR" />
+    <result column="user_integral" property="userIntegral" jdbcType="BIGINT" />
+    <result column="user_balance" property="userBalance" jdbcType="DECIMAL" />
+    <result column="user_pay_pass" property="userPayPass" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, user_full, user_sex, user_nike, user_head, user_card, user_birthday, 
+    user_integral, user_balance, user_pay_pass
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_details
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_details
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.UserDetails" >
+    insert into user_details (id, user_id, user_full, 
+      user_sex, user_nike, user_head, 
+      user_card, user_birthday, user_integral, 
+      user_balance, user_pay_pass)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userFull,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=CHAR}, #{userNike,jdbcType=VARCHAR}, #{userHead,jdbcType=VARCHAR}, 
+      #{userCard,jdbcType=VARCHAR}, #{userBirthday,jdbcType=VARCHAR}, #{userIntegral,jdbcType=BIGINT}, 
+      #{userBalance,jdbcType=DECIMAL}, #{userPayPass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.UserDetails" >
+    insert into user_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userFull != null" >
+        user_full,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userNike != null" >
+        user_nike,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+      <if test="userCard != null" >
+        user_card,
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday,
+      </if>
+      <if test="userIntegral != null" >
+        user_integral,
+      </if>
+      <if test="userBalance != null" >
+        user_balance,
+      </if>
+      <if test="userPayPass != null" >
+        user_pay_pass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userFull != null" >
+        #{userFull,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userNike != null" >
+        #{userNike,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="userCard != null" >
+        #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        #{userBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userIntegral != null" >
+        #{userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userBalance != null" >
+        #{userBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userPayPass != null" >
+        #{userPayPass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.UserDetails" >
+    update user_details
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userFull != null" >
+        user_full = #{userFull,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=CHAR},
+      </if>
+      <if test="userNike != null" >
+        user_nike = #{userNike,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null" >
+        user_head = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="userCard != null" >
+        user_card = #{userCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null" >
+        user_birthday = #{userBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userIntegral != null" >
+        user_integral = #{userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userBalance != null" >
+        user_balance = #{userBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userPayPass != null" >
+        user_pay_pass = #{userPayPass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.UserDetails" >
+    update user_details
+    set user_id = #{userId,jdbcType=BIGINT},
+      user_full = #{userFull,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=CHAR},
+      user_nike = #{userNike,jdbcType=VARCHAR},
+      user_head = #{userHead,jdbcType=VARCHAR},
+      user_card = #{userCard,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=VARCHAR},
+      user_integral = #{userIntegral,jdbcType=BIGINT},
+      user_balance = #{userBalance,jdbcType=DECIMAL},
+      user_pay_pass = #{userPayPass,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

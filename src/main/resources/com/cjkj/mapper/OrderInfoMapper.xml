@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.OrderInfo" >
+    <id column="order_info_id" property="orderInfoId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_info_id" property="goodsInfoId" jdbcType="BIGINT" />
+    <result column="goods_info_name" property="goodsInfoName" jdbcType="VARCHAR" />
+    <result column="purchase_price" property="purchasePrice" jdbcType="DECIMAL" />
+    <result column="purchase_num" property="purchaseNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_info_id, order_id, order_code, goods_id, goods_name, goods_info_id, goods_info_name, 
+    purchase_price, purchase_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_info_id = #{orderInfoId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_info
+    where order_info_id = #{orderInfoId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.OrderInfo" >
+    insert into order_info (order_info_id, order_id, order_code, 
+      goods_id, goods_name, goods_info_id, 
+      goods_info_name, purchase_price, purchase_num
+      )
+    values (#{orderInfoId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsInfoId,jdbcType=BIGINT}, 
+      #{goodsInfoName,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DECIMAL}, #{purchaseNum,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderInfoId != null" >
+        order_info_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id,
+      </if>
+      <if test="goodsInfoName != null" >
+        goods_info_name,
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price,
+      </if>
+      <if test="purchaseNum != null" >
+        purchase_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderInfoId != null" >
+        #{orderInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoId != null" >
+        #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoName != null" >
+        #{goodsInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null" >
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNum != null" >
+        #{purchaseNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.OrderInfo" >
+    update order_info
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoName != null" >
+        goods_info_name = #{goodsInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasePrice != null" >
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseNum != null" >
+        purchase_num = #{purchaseNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where order_info_id = #{orderInfoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.OrderInfo" >
+    update order_info
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      goods_info_name = #{goodsInfoName,jdbcType=VARCHAR},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      purchase_num = #{purchaseNum,jdbcType=BIGINT}
+    where order_info_id = #{orderInfoId,jdbcType=BIGINT}
+  </update>
+</mapper>

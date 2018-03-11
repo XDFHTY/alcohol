@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.CouponGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.CouponGoodsInfo" >
+    <id column="coupon_goods_info_id" property="couponGoodsInfoId" jdbcType="BIGINT" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="goods_info_id" property="goodsInfoId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_goods_info_id, coupon_id, goods_info_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_goods_info
+    where coupon_goods_info_id = #{couponGoodsInfoId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon_goods_info
+    where coupon_goods_info_id = #{couponGoodsInfoId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.CouponGoodsInfo" >
+    insert into coupon_goods_info (coupon_goods_info_id, coupon_id, goods_info_id
+      )
+    values (#{couponGoodsInfoId,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, #{goodsInfoId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.CouponGoodsInfo" >
+    insert into coupon_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponGoodsInfoId != null" >
+        coupon_goods_info_id,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponGoodsInfoId != null" >
+        #{couponGoodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoId != null" >
+        #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.CouponGoodsInfo" >
+    update coupon_goods_info
+    <set >
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where coupon_goods_info_id = #{couponGoodsInfoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.CouponGoodsInfo" >
+    update coupon_goods_info
+    set coupon_id = #{couponId,jdbcType=BIGINT},
+      goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+    where coupon_goods_info_id = #{couponGoodsInfoId,jdbcType=BIGINT}
+  </update>
+</mapper>

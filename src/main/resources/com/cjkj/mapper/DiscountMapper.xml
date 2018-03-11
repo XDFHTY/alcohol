@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.DiscountMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.Discount" >
+    <id column="discount_id" property="discountId" jdbcType="BIGINT" />
+    <result column="tital" property="tital" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="admin_id" property="adminId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    discount_id, tital, content, address, start_time, end_time, admin_id, create_time, 
+    delete_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from discount
+    where discount_id = #{discountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from discount
+    where discount_id = #{discountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.Discount" >
+    insert into discount (discount_id, tital, content, 
+      address, start_time, end_time, 
+      admin_id, create_time, delete_time, 
+      state)
+    values (#{discountId,jdbcType=BIGINT}, #{tital,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{adminId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.Discount" >
+    insert into discount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="discountId != null" >
+        discount_id,
+      </if>
+      <if test="tital != null" >
+        tital,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="discountId != null" >
+        #{discountId,jdbcType=BIGINT},
+      </if>
+      <if test="tital != null" >
+        #{tital,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.Discount" >
+    update discount
+    <set >
+      <if test="tital != null" >
+        tital = #{tital,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where discount_id = #{discountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.Discount" >
+    update discount
+    set tital = #{tital,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      admin_id = #{adminId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where discount_id = #{discountId,jdbcType=BIGINT}
+  </update>
+</mapper>

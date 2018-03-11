@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.CouponCateMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.CouponCate" >
+    <id column="coupon_cate_id" property="couponCateId" jdbcType="BIGINT" />
+    <result column="coupon_cate_name" property="couponCateName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_cate_id, coupon_cate_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_cate
+    where coupon_cate_id = #{couponCateId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon_cate
+    where coupon_cate_id = #{couponCateId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.CouponCate" >
+    insert into coupon_cate (coupon_cate_id, coupon_cate_name)
+    values (#{couponCateId,jdbcType=BIGINT}, #{couponCateName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.CouponCate" >
+    insert into coupon_cate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponCateId != null" >
+        coupon_cate_id,
+      </if>
+      <if test="couponCateName != null" >
+        coupon_cate_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponCateId != null" >
+        #{couponCateId,jdbcType=BIGINT},
+      </if>
+      <if test="couponCateName != null" >
+        #{couponCateName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.CouponCate" >
+    update coupon_cate
+    <set >
+      <if test="couponCateName != null" >
+        coupon_cate_name = #{couponCateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where coupon_cate_id = #{couponCateId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.CouponCate" >
+    update coupon_cate
+    set coupon_cate_name = #{couponCateName,jdbcType=VARCHAR}
+    where coupon_cate_id = #{couponCateId,jdbcType=BIGINT}
+  </update>
+</mapper>

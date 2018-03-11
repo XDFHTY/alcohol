@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.Coupon" >
+    <id column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="coupon_name" property="couponName" jdbcType="VARCHAR" />
+    <result column="coupon_remark" property="couponRemark" jdbcType="VARCHAR" />
+    <result column="coupon_start_time" property="couponStartTime" jdbcType="TIMESTAMP" />
+    <result column="coupon_end_time" property="couponEndTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="coupon_is_show" property="couponIsShow" jdbcType="CHAR" />
+    <result column="coupon_pic" property="couponPic" jdbcType="VARCHAR" />
+    <result column="coupon_rules_type" property="couponRulesType" jdbcType="CHAR" />
+    <result column="coupon_price" property="couponPrice" jdbcType="DECIMAL" />
+    <result column="fullbuy_price" property="fullbuyPrice" jdbcType="DECIMAL" />
+    <result column="reduce_price" property="reducePrice" jdbcType="DECIMAL" />
+    <result column="coupon_get_no" property="couponGetNo" jdbcType="BIGINT" />
+    <result column="coupon_get_type" property="couponGetType" jdbcType="CHAR" />
+    <result column="coupon_count" property="couponCount" jdbcType="BIGINT" />
+    <result column="is_all" property="isAll" jdbcType="CHAR" />
+    <result column="coupon_cate_id" property="couponCateId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_id, coupon_name, coupon_remark, coupon_start_time, coupon_end_time, create_time, 
+    modify_time, coupon_is_show, coupon_pic, coupon_rules_type, coupon_price, fullbuy_price, 
+    reduce_price, coupon_get_no, coupon_get_type, coupon_count, is_all, coupon_cate_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.Coupon" >
+    insert into coupon (coupon_id, coupon_name, coupon_remark, 
+      coupon_start_time, coupon_end_time, create_time, 
+      modify_time, coupon_is_show, coupon_pic, 
+      coupon_rules_type, coupon_price, fullbuy_price, 
+      reduce_price, coupon_get_no, coupon_get_type, 
+      coupon_count, is_all, coupon_cate_id
+      )
+    values (#{couponId,jdbcType=BIGINT}, #{couponName,jdbcType=VARCHAR}, #{couponRemark,jdbcType=VARCHAR}, 
+      #{couponStartTime,jdbcType=TIMESTAMP}, #{couponEndTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{couponIsShow,jdbcType=CHAR}, #{couponPic,jdbcType=VARCHAR}, 
+      #{couponRulesType,jdbcType=CHAR}, #{couponPrice,jdbcType=DECIMAL}, #{fullbuyPrice,jdbcType=DECIMAL}, 
+      #{reducePrice,jdbcType=DECIMAL}, #{couponGetNo,jdbcType=BIGINT}, #{couponGetType,jdbcType=CHAR}, 
+      #{couponCount,jdbcType=BIGINT}, #{isAll,jdbcType=CHAR}, #{couponCateId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.Coupon" >
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponName != null" >
+        coupon_name,
+      </if>
+      <if test="couponRemark != null" >
+        coupon_remark,
+      </if>
+      <if test="couponStartTime != null" >
+        coupon_start_time,
+      </if>
+      <if test="couponEndTime != null" >
+        coupon_end_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="couponIsShow != null" >
+        coupon_is_show,
+      </if>
+      <if test="couponPic != null" >
+        coupon_pic,
+      </if>
+      <if test="couponRulesType != null" >
+        coupon_rules_type,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="fullbuyPrice != null" >
+        fullbuy_price,
+      </if>
+      <if test="reducePrice != null" >
+        reduce_price,
+      </if>
+      <if test="couponGetNo != null" >
+        coupon_get_no,
+      </if>
+      <if test="couponGetType != null" >
+        coupon_get_type,
+      </if>
+      <if test="couponCount != null" >
+        coupon_count,
+      </if>
+      <if test="isAll != null" >
+        is_all,
+      </if>
+      <if test="couponCateId != null" >
+        coupon_cate_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="couponName != null" >
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRemark != null" >
+        #{couponRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="couponStartTime != null" >
+        #{couponStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponEndTime != null" >
+        #{couponEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponIsShow != null" >
+        #{couponIsShow,jdbcType=CHAR},
+      </if>
+      <if test="couponPic != null" >
+        #{couponPic,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRulesType != null" >
+        #{couponRulesType,jdbcType=CHAR},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullbuyPrice != null" >
+        #{fullbuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reducePrice != null" >
+        #{reducePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="couponGetNo != null" >
+        #{couponGetNo,jdbcType=BIGINT},
+      </if>
+      <if test="couponGetType != null" >
+        #{couponGetType,jdbcType=CHAR},
+      </if>
+      <if test="couponCount != null" >
+        #{couponCount,jdbcType=BIGINT},
+      </if>
+      <if test="isAll != null" >
+        #{isAll,jdbcType=CHAR},
+      </if>
+      <if test="couponCateId != null" >
+        #{couponCateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.Coupon" >
+    update coupon
+    <set >
+      <if test="couponName != null" >
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRemark != null" >
+        coupon_remark = #{couponRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="couponStartTime != null" >
+        coupon_start_time = #{couponStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponEndTime != null" >
+        coupon_end_time = #{couponEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponIsShow != null" >
+        coupon_is_show = #{couponIsShow,jdbcType=CHAR},
+      </if>
+      <if test="couponPic != null" >
+        coupon_pic = #{couponPic,jdbcType=VARCHAR},
+      </if>
+      <if test="couponRulesType != null" >
+        coupon_rules_type = #{couponRulesType,jdbcType=CHAR},
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fullbuyPrice != null" >
+        fullbuy_price = #{fullbuyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reducePrice != null" >
+        reduce_price = #{reducePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="couponGetNo != null" >
+        coupon_get_no = #{couponGetNo,jdbcType=BIGINT},
+      </if>
+      <if test="couponGetType != null" >
+        coupon_get_type = #{couponGetType,jdbcType=CHAR},
+      </if>
+      <if test="couponCount != null" >
+        coupon_count = #{couponCount,jdbcType=BIGINT},
+      </if>
+      <if test="isAll != null" >
+        is_all = #{isAll,jdbcType=CHAR},
+      </if>
+      <if test="couponCateId != null" >
+        coupon_cate_id = #{couponCateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.Coupon" >
+    update coupon
+    set coupon_name = #{couponName,jdbcType=VARCHAR},
+      coupon_remark = #{couponRemark,jdbcType=VARCHAR},
+      coupon_start_time = #{couponStartTime,jdbcType=TIMESTAMP},
+      coupon_end_time = #{couponEndTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      coupon_is_show = #{couponIsShow,jdbcType=CHAR},
+      coupon_pic = #{couponPic,jdbcType=VARCHAR},
+      coupon_rules_type = #{couponRulesType,jdbcType=CHAR},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      fullbuy_price = #{fullbuyPrice,jdbcType=DECIMAL},
+      reduce_price = #{reducePrice,jdbcType=DECIMAL},
+      coupon_get_no = #{couponGetNo,jdbcType=BIGINT},
+      coupon_get_type = #{couponGetType,jdbcType=CHAR},
+      coupon_count = #{couponCount,jdbcType=BIGINT},
+      is_all = #{isAll,jdbcType=CHAR},
+      coupon_cate_id = #{couponCateId,jdbcType=BIGINT}
+    where coupon_id = #{couponId,jdbcType=BIGINT}
+  </update>
+</mapper>

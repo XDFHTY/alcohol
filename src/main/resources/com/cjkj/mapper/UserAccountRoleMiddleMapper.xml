@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.UserAccountRoleMiddleMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.UserAccountRoleMiddle" >
+    <id column="account_role_middle_id" property="accountRoleMiddleId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    account_role_middle_id, user_id, role_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_account_role_middle
+    where account_role_middle_id = #{accountRoleMiddleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_account_role_middle
+    where account_role_middle_id = #{accountRoleMiddleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.UserAccountRoleMiddle" >
+    insert into user_account_role_middle (account_role_middle_id, user_id, role_id
+      )
+    values (#{accountRoleMiddleId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.UserAccountRoleMiddle" >
+    insert into user_account_role_middle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountRoleMiddleId != null" >
+        account_role_middle_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountRoleMiddleId != null" >
+        #{accountRoleMiddleId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.UserAccountRoleMiddle" >
+    update user_account_role_middle
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where account_role_middle_id = #{accountRoleMiddleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.UserAccountRoleMiddle" >
+    update user_account_role_middle
+    set user_id = #{userId,jdbcType=BIGINT},
+      role_id = #{roleId,jdbcType=BIGINT}
+    where account_role_middle_id = #{accountRoleMiddleId,jdbcType=BIGINT}
+  </update>
+</mapper>

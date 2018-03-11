@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.UserCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.UserCoupon" >
+    <id column="user_coupon_id" property="userCouponId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="goods_info_id" property="goodsInfoId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_coupon_id, user_id, coupon_id, state, use_time, goods_info_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_coupon
+    where user_coupon_id = #{userCouponId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_coupon
+    where user_coupon_id = #{userCouponId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.UserCoupon" >
+    insert into user_coupon (user_coupon_id, user_id, coupon_id, 
+      state, use_time, goods_info_id
+      )
+    values (#{userCouponId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, 
+      #{state,jdbcType=CHAR}, #{useTime,jdbcType=TIMESTAMP}, #{goodsInfoId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.UserCoupon" >
+    insert into user_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userCouponId != null" >
+        user_coupon_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userCouponId != null" >
+        #{userCouponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoId != null" >
+        #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.UserCoupon" >
+    update user_coupon
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_coupon_id = #{userCouponId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.UserCoupon" >
+    update user_coupon
+    set user_id = #{userId,jdbcType=BIGINT},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      state = #{state,jdbcType=CHAR},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+    where user_coupon_id = #{userCouponId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.GoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.GoodsInfo" >
+    <id column="goods_info_id" property="goodsInfoId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_info_name" property="goodsInfoName" jdbcType="VARCHAR" />
+    <result column="goods_info_subtitle" property="goodsInfoSubtitle" jdbcType="VARCHAR" />
+    <result column="goods_info_added" property="goodsInfoAdded" jdbcType="CHAR" />
+    <result column="goods_info_added_time" property="goodsInfoAddedTime" jdbcType="TIMESTAMP" />
+    <result column="goods_info_unadded_time" property="goodsInfoUnaddedTime" jdbcType="TIMESTAMP" />
+    <result column="goods_info_stock" property="goodsInfoStock" jdbcType="BIGINT" />
+    <result column="goods_info_prefer_price" property="goodsInfoPreferPrice" jdbcType="DECIMAL" />
+    <result column="goods_info_cost_price" property="goodsInfoCostPrice" jdbcType="DECIMAL" />
+    <result column="goods_info_market_price" property="goodsInfoMarketPrice" jdbcType="DECIMAL" />
+    <result column="goods_info_member_price" property="goodsInfoMemberPrice" jdbcType="DECIMAL" />
+    <result column="goods_info_usecoupon" property="goodsInfoUsecoupon" jdbcType="CHAR" />
+    <result column="founder_id" property="founderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_info_id, goods_id, goods_info_name, goods_info_subtitle, goods_info_added, 
+    goods_info_added_time, goods_info_unadded_time, goods_info_stock, goods_info_prefer_price, 
+    goods_info_cost_price, goods_info_market_price, goods_info_member_price, goods_info_usecoupon, 
+    founder_id, create_time, operator_id, delete_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_info
+    where goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_info
+    where goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.GoodsInfo" >
+    insert into goods_info (goods_info_id, goods_id, goods_info_name, 
+      goods_info_subtitle, goods_info_added, goods_info_added_time, 
+      goods_info_unadded_time, goods_info_stock, 
+      goods_info_prefer_price, goods_info_cost_price, 
+      goods_info_market_price, goods_info_member_price, 
+      goods_info_usecoupon, founder_id, create_time, 
+      operator_id, delete_time, state
+      )
+    values (#{goodsInfoId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsInfoName,jdbcType=VARCHAR}, 
+      #{goodsInfoSubtitle,jdbcType=VARCHAR}, #{goodsInfoAdded,jdbcType=CHAR}, #{goodsInfoAddedTime,jdbcType=TIMESTAMP}, 
+      #{goodsInfoUnaddedTime,jdbcType=TIMESTAMP}, #{goodsInfoStock,jdbcType=BIGINT}, 
+      #{goodsInfoPreferPrice,jdbcType=DECIMAL}, #{goodsInfoCostPrice,jdbcType=DECIMAL}, 
+      #{goodsInfoMarketPrice,jdbcType=DECIMAL}, #{goodsInfoMemberPrice,jdbcType=DECIMAL}, 
+      #{goodsInfoUsecoupon,jdbcType=CHAR}, #{founderId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=BIGINT}, #{deleteTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.GoodsInfo" >
+    insert into goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsInfoId != null" >
+        goods_info_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsInfoName != null" >
+        goods_info_name,
+      </if>
+      <if test="goodsInfoSubtitle != null" >
+        goods_info_subtitle,
+      </if>
+      <if test="goodsInfoAdded != null" >
+        goods_info_added,
+      </if>
+      <if test="goodsInfoAddedTime != null" >
+        goods_info_added_time,
+      </if>
+      <if test="goodsInfoUnaddedTime != null" >
+        goods_info_unadded_time,
+      </if>
+      <if test="goodsInfoStock != null" >
+        goods_info_stock,
+      </if>
+      <if test="goodsInfoPreferPrice != null" >
+        goods_info_prefer_price,
+      </if>
+      <if test="goodsInfoCostPrice != null" >
+        goods_info_cost_price,
+      </if>
+      <if test="goodsInfoMarketPrice != null" >
+        goods_info_market_price,
+      </if>
+      <if test="goodsInfoMemberPrice != null" >
+        goods_info_member_price,
+      </if>
+      <if test="goodsInfoUsecoupon != null" >
+        goods_info_usecoupon,
+      </if>
+      <if test="founderId != null" >
+        founder_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsInfoId != null" >
+        #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoName != null" >
+        #{goodsInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoSubtitle != null" >
+        #{goodsInfoSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoAdded != null" >
+        #{goodsInfoAdded,jdbcType=CHAR},
+      </if>
+      <if test="goodsInfoAddedTime != null" >
+        #{goodsInfoAddedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoUnaddedTime != null" >
+        #{goodsInfoUnaddedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoStock != null" >
+        #{goodsInfoStock,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoPreferPrice != null" >
+        #{goodsInfoPreferPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoCostPrice != null" >
+        #{goodsInfoCostPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoMarketPrice != null" >
+        #{goodsInfoMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoMemberPrice != null" >
+        #{goodsInfoMemberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoUsecoupon != null" >
+        #{goodsInfoUsecoupon,jdbcType=CHAR},
+      </if>
+      <if test="founderId != null" >
+        #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.GoodsInfo" >
+    update goods_info
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoName != null" >
+        goods_info_name = #{goodsInfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoSubtitle != null" >
+        goods_info_subtitle = #{goodsInfoSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsInfoAdded != null" >
+        goods_info_added = #{goodsInfoAdded,jdbcType=CHAR},
+      </if>
+      <if test="goodsInfoAddedTime != null" >
+        goods_info_added_time = #{goodsInfoAddedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoUnaddedTime != null" >
+        goods_info_unadded_time = #{goodsInfoUnaddedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInfoStock != null" >
+        goods_info_stock = #{goodsInfoStock,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoPreferPrice != null" >
+        goods_info_prefer_price = #{goodsInfoPreferPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoCostPrice != null" >
+        goods_info_cost_price = #{goodsInfoCostPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoMarketPrice != null" >
+        goods_info_market_price = #{goodsInfoMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoMemberPrice != null" >
+        goods_info_member_price = #{goodsInfoMemberPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsInfoUsecoupon != null" >
+        goods_info_usecoupon = #{goodsInfoUsecoupon,jdbcType=CHAR},
+      </if>
+      <if test="founderId != null" >
+        founder_id = #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.GoodsInfo" >
+    update goods_info
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_info_name = #{goodsInfoName,jdbcType=VARCHAR},
+      goods_info_subtitle = #{goodsInfoSubtitle,jdbcType=VARCHAR},
+      goods_info_added = #{goodsInfoAdded,jdbcType=CHAR},
+      goods_info_added_time = #{goodsInfoAddedTime,jdbcType=TIMESTAMP},
+      goods_info_unadded_time = #{goodsInfoUnaddedTime,jdbcType=TIMESTAMP},
+      goods_info_stock = #{goodsInfoStock,jdbcType=BIGINT},
+      goods_info_prefer_price = #{goodsInfoPreferPrice,jdbcType=DECIMAL},
+      goods_info_cost_price = #{goodsInfoCostPrice,jdbcType=DECIMAL},
+      goods_info_market_price = #{goodsInfoMarketPrice,jdbcType=DECIMAL},
+      goods_info_member_price = #{goodsInfoMemberPrice,jdbcType=DECIMAL},
+      goods_info_usecoupon = #{goodsInfoUsecoupon,jdbcType=CHAR},
+      founder_id = #{founderId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where goods_info_id = #{goodsInfoId,jdbcType=BIGINT}
+  </update>
+</mapper>

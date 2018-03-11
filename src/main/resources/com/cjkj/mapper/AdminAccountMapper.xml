@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.AdminAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.AdminAccount" >
+    <id column="admin_account_id" property="adminAccountId" jdbcType="BIGINT" />
+    <result column="admin_account" property="adminAccount" jdbcType="VARCHAR" />
+    <result column="admin_pass" property="adminPass" jdbcType="VARCHAR" />
+    <result column="salt_val" property="saltVal" jdbcType="VARCHAR" />
+    <result column="founder_id" property="founderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_account_id, admin_account, admin_pass, salt_val, founder_id, create_time, operator_id, 
+    operation_time, update_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_account
+    where admin_account_id = #{adminAccountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from admin_account
+    where admin_account_id = #{adminAccountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.AdminAccount" >
+    insert into admin_account (admin_account_id, admin_account, admin_pass, 
+      salt_val, founder_id, create_time, 
+      operator_id, operation_time, update_time, 
+      state)
+    values (#{adminAccountId,jdbcType=BIGINT}, #{adminAccount,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
+      #{saltVal,jdbcType=VARCHAR}, #{founderId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=BIGINT}, #{operationTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.AdminAccount" >
+    insert into admin_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminAccountId != null" >
+        admin_account_id,
+      </if>
+      <if test="adminAccount != null" >
+        admin_account,
+      </if>
+      <if test="adminPass != null" >
+        admin_pass,
+      </if>
+      <if test="saltVal != null" >
+        salt_val,
+      </if>
+      <if test="founderId != null" >
+        founder_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminAccountId != null" >
+        #{adminAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="adminAccount != null" >
+        #{adminAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="founderId != null" >
+        #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.AdminAccount" >
+    update admin_account
+    <set >
+      <if test="adminAccount != null" >
+        admin_account = #{adminAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="saltVal != null" >
+        salt_val = #{saltVal,jdbcType=VARCHAR},
+      </if>
+      <if test="founderId != null" >
+        founder_id = #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where admin_account_id = #{adminAccountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.AdminAccount" >
+    update admin_account
+    set admin_account = #{adminAccount,jdbcType=VARCHAR},
+      admin_pass = #{adminPass,jdbcType=VARCHAR},
+      salt_val = #{saltVal,jdbcType=VARCHAR},
+      founder_id = #{founderId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where admin_account_id = #{adminAccountId,jdbcType=BIGINT}
+  </update>
+</mapper>

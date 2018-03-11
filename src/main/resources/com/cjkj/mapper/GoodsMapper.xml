@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="cat_id" property="catId" jdbcType="BIGINT" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_subtitle" property="goodsSubtitle" jdbcType="VARCHAR" />
+    <result column="goods_no" property="goodsNo" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="VARCHAR" />
+    <result column="goods_brief" property="goodsBrief" jdbcType="VARCHAR" />
+    <result column="goods_added" property="goodsAdded" jdbcType="CHAR" />
+    <result column="goods_uptime" property="goodsUptime" jdbcType="TIMESTAMP" />
+    <result column="founder_id" property="founderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_id, cat_id, type_id, goods_name, goods_subtitle, goods_no, brand_id, goods_brief, 
+    goods_added, goods_uptime, founder_id, create_time, operator_id, delete_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.Goods" >
+    insert into goods (goods_id, cat_id, type_id, 
+      goods_name, goods_subtitle, goods_no, 
+      brand_id, goods_brief, goods_added, 
+      goods_uptime, founder_id, create_time, 
+      operator_id, delete_time, state
+      )
+    values (#{goodsId,jdbcType=BIGINT}, #{catId,jdbcType=BIGINT}, #{typeId,jdbcType=BIGINT}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsSubtitle,jdbcType=VARCHAR}, #{goodsNo,jdbcType=VARCHAR}, 
+      #{brandId,jdbcType=VARCHAR}, #{goodsBrief,jdbcType=VARCHAR}, #{goodsAdded,jdbcType=CHAR}, 
+      #{goodsUptime,jdbcType=TIMESTAMP}, #{founderId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=BIGINT}, #{deleteTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="catId != null" >
+        cat_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsSubtitle != null" >
+        goods_subtitle,
+      </if>
+      <if test="goodsNo != null" >
+        goods_no,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="goodsBrief != null" >
+        goods_brief,
+      </if>
+      <if test="goodsAdded != null" >
+        goods_added,
+      </if>
+      <if test="goodsUptime != null" >
+        goods_uptime,
+      </if>
+      <if test="founderId != null" >
+        founder_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="catId != null" >
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSubtitle != null" >
+        #{goodsSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNo != null" >
+        #{goodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBrief != null" >
+        #{goodsBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAdded != null" >
+        #{goodsAdded,jdbcType=CHAR},
+      </if>
+      <if test="goodsUptime != null" >
+        #{goodsUptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founderId != null" >
+        #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.Goods" >
+    update goods
+    <set >
+      <if test="catId != null" >
+        cat_id = #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSubtitle != null" >
+        goods_subtitle = #{goodsSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNo != null" >
+        goods_no = #{goodsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBrief != null" >
+        goods_brief = #{goodsBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsAdded != null" >
+        goods_added = #{goodsAdded,jdbcType=CHAR},
+      </if>
+      <if test="goodsUptime != null" >
+        goods_uptime = #{goodsUptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founderId != null" >
+        founder_id = #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.Goods" >
+    update goods
+    set cat_id = #{catId,jdbcType=BIGINT},
+      type_id = #{typeId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_subtitle = #{goodsSubtitle,jdbcType=VARCHAR},
+      goods_no = #{goodsNo,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=VARCHAR},
+      goods_brief = #{goodsBrief,jdbcType=VARCHAR},
+      goods_added = #{goodsAdded,jdbcType=CHAR},
+      goods_uptime = #{goodsUptime,jdbcType=TIMESTAMP},
+      founder_id = #{founderId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

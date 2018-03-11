@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.BasicsMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.Basics" >
+    <id column="basics_id" property="basicsId" jdbcType="BIGINT" />
+    <result column="basics_name" property="basicsName" jdbcType="VARCHAR" />
+    <result column="basics_address" property="basicsAddress" jdbcType="VARCHAR" />
+    <result column="basics_range" property="basicsRange" jdbcType="VARCHAR" />
+    <result column="basics_phone1" property="basicsPhone1" jdbcType="VARCHAR" />
+    <result column="basics_phone2" property="basicsPhone2" jdbcType="VARCHAR" />
+    <result column="basics_msg" property="basicsMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    basics_id, basics_name, basics_address, basics_range, basics_phone1, basics_phone2, 
+    basics_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from basics
+    where basics_id = #{basicsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from basics
+    where basics_id = #{basicsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.Basics" >
+    insert into basics (basics_id, basics_name, basics_address, 
+      basics_range, basics_phone1, basics_phone2, 
+      basics_msg)
+    values (#{basicsId,jdbcType=BIGINT}, #{basicsName,jdbcType=VARCHAR}, #{basicsAddress,jdbcType=VARCHAR}, 
+      #{basicsRange,jdbcType=VARCHAR}, #{basicsPhone1,jdbcType=VARCHAR}, #{basicsPhone2,jdbcType=VARCHAR}, 
+      #{basicsMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.Basics" >
+    insert into basics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="basicsId != null" >
+        basics_id,
+      </if>
+      <if test="basicsName != null" >
+        basics_name,
+      </if>
+      <if test="basicsAddress != null" >
+        basics_address,
+      </if>
+      <if test="basicsRange != null" >
+        basics_range,
+      </if>
+      <if test="basicsPhone1 != null" >
+        basics_phone1,
+      </if>
+      <if test="basicsPhone2 != null" >
+        basics_phone2,
+      </if>
+      <if test="basicsMsg != null" >
+        basics_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="basicsId != null" >
+        #{basicsId,jdbcType=BIGINT},
+      </if>
+      <if test="basicsName != null" >
+        #{basicsName,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsAddress != null" >
+        #{basicsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsRange != null" >
+        #{basicsRange,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsPhone1 != null" >
+        #{basicsPhone1,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsPhone2 != null" >
+        #{basicsPhone2,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsMsg != null" >
+        #{basicsMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.Basics" >
+    update basics
+    <set >
+      <if test="basicsName != null" >
+        basics_name = #{basicsName,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsAddress != null" >
+        basics_address = #{basicsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsRange != null" >
+        basics_range = #{basicsRange,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsPhone1 != null" >
+        basics_phone1 = #{basicsPhone1,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsPhone2 != null" >
+        basics_phone2 = #{basicsPhone2,jdbcType=VARCHAR},
+      </if>
+      <if test="basicsMsg != null" >
+        basics_msg = #{basicsMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where basics_id = #{basicsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.Basics" >
+    update basics
+    set basics_name = #{basicsName,jdbcType=VARCHAR},
+      basics_address = #{basicsAddress,jdbcType=VARCHAR},
+      basics_range = #{basicsRange,jdbcType=VARCHAR},
+      basics_phone1 = #{basicsPhone1,jdbcType=VARCHAR},
+      basics_phone2 = #{basicsPhone2,jdbcType=VARCHAR},
+      basics_msg = #{basicsMsg,jdbcType=VARCHAR}
+    where basics_id = #{basicsId,jdbcType=BIGINT}
+  </update>
+</mapper>

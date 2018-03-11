@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.IntegralUseMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.IntegralUse" >
+    <id column="integral_use_id" property="integralUseId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="integral" property="integral" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    integral_use_id, user_id, order_id, integral, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from integral_use
+    where integral_use_id = #{integralUseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from integral_use
+    where integral_use_id = #{integralUseId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.IntegralUse" >
+    insert into integral_use (integral_use_id, user_id, order_id, 
+      integral, create_time)
+    values (#{integralUseId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, 
+      #{integral,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.IntegralUse" >
+    insert into integral_use
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="integralUseId != null" >
+        integral_use_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="integralUseId != null" >
+        #{integralUseId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.IntegralUse" >
+    update integral_use
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where integral_use_id = #{integralUseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.IntegralUse" >
+    update integral_use
+    set user_id = #{userId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      integral = #{integral,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where integral_use_id = #{integralUseId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cjkj.mapper.SystemImgMapper" >
+  <resultMap id="BaseResultMap" type="com.cjkj.entity.SystemImg" >
+    <id column="system_img_id" property="systemImgId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="goods_info_id" property="goodsInfoId" jdbcType="BIGINT" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="discount_id" property="discountId" jdbcType="BIGINT" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="to_url" property="toUrl" jdbcType="VARCHAR" />
+    <result column="picture_type" property="pictureType" jdbcType="CHAR" />
+    <result column="img_type" property="imgType" jdbcType="CHAR" />
+    <result column="founder_id" property="founderId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    system_img_id, goods_id, goods_info_id, type_id, discount_id, img_url, to_url, picture_type, 
+    img_type, founder_id, create_time, operator_id, operate_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_img
+    where system_img_id = #{systemImgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from system_img
+    where system_img_id = #{systemImgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cjkj.entity.SystemImg" >
+    insert into system_img (system_img_id, goods_id, goods_info_id, 
+      type_id, discount_id, img_url, 
+      to_url, picture_type, img_type, 
+      founder_id, create_time, operator_id, 
+      operate_time, state)
+    values (#{systemImgId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{goodsInfoId,jdbcType=BIGINT}, 
+      #{typeId,jdbcType=BIGINT}, #{discountId,jdbcType=BIGINT}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{toUrl,jdbcType=VARCHAR}, #{pictureType,jdbcType=CHAR}, #{imgType,jdbcType=CHAR}, 
+      #{founderId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{operatorId,jdbcType=BIGINT}, 
+      #{operateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cjkj.entity.SystemImg" >
+    insert into system_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemImgId != null" >
+        system_img_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="discountId != null" >
+        discount_id,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="toUrl != null" >
+        to_url,
+      </if>
+      <if test="pictureType != null" >
+        picture_type,
+      </if>
+      <if test="imgType != null" >
+        img_type,
+      </if>
+      <if test="founderId != null" >
+        founder_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operateTime != null" >
+        operate_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemImgId != null" >
+        #{systemImgId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoId != null" >
+        #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="discountId != null" >
+        #{discountId,jdbcType=BIGINT},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null" >
+        #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureType != null" >
+        #{pictureType,jdbcType=CHAR},
+      </if>
+      <if test="imgType != null" >
+        #{imgType,jdbcType=CHAR},
+      </if>
+      <if test="founderId != null" >
+        #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cjkj.entity.SystemImg" >
+    update system_img
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfoId != null" >
+        goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="discountId != null" >
+        discount_id = #{discountId,jdbcType=BIGINT},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="toUrl != null" >
+        to_url = #{toUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureType != null" >
+        picture_type = #{pictureType,jdbcType=CHAR},
+      </if>
+      <if test="imgType != null" >
+        img_type = #{imgType,jdbcType=CHAR},
+      </if>
+      <if test="founderId != null" >
+        founder_id = #{founderId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operateTime != null" >
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where system_img_id = #{systemImgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cjkj.entity.SystemImg" >
+    update system_img
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      type_id = #{typeId,jdbcType=BIGINT},
+      discount_id = #{discountId,jdbcType=BIGINT},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      to_url = #{toUrl,jdbcType=VARCHAR},
+      picture_type = #{pictureType,jdbcType=CHAR},
+      img_type = #{imgType,jdbcType=CHAR},
+      founder_id = #{founderId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where system_img_id = #{systemImgId,jdbcType=BIGINT}
+  </update>
+</mapper>
